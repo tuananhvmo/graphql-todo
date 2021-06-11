@@ -6,6 +6,7 @@ export const resolvers = {
       const todos = await Todo.find({});
       return todos;
     },
+
     getTodoById: async (parent, args) => {
       const todo = await Todo.findById(args.id);
       return todo;
@@ -20,6 +21,7 @@ export const resolvers = {
       });
       return newTodo;
     },
+
     toggleTodo: async (parent, args) => {
       const todo = await Todo.findById(args.id);
       todo.completed = !todo.completed;
@@ -27,6 +29,7 @@ export const resolvers = {
       await todo.save();
       return todo;
     },
+
     editTodo: async (parent, args) => {
       const { id, text } = args;
       const todo = await Todo.findById(id);
@@ -36,6 +39,7 @@ export const resolvers = {
       await todo.save();
       return todo;
     },
+    
     deleteTodo: async (parent, args) => {
       const todo = await Todo.findById(args.id);
       if (!todo) return 'No Todo Found.';
